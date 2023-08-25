@@ -37,11 +37,6 @@ let $$init = {
 
     function fullChain() {
       openDingtalk();
-
-      if (fastSign()) {
-        return true;
-      }
-
       openDingtalk();
       attendKaoqin();
       signIn();
@@ -284,18 +279,6 @@ let $$init = {
       console.info("attendKaoqin")
     }
 
-
-    function fastSign() {
-      toastLog("等待10秒的极速打卡");
-      //等待10秒的极速打卡
-      if (textContains("极速").findOne(5000)) {
-        logMessage += "极速打卡成功";
-        return true;
-      }
-      toastLog("未检测到极速打卡通知，开始正常打卡");
-      return false;
-    }
-
     //点击打卡
     function signIn() {
       if (bc === 0) {
@@ -492,7 +475,7 @@ let $$init = {
     function pushMessageWeixin(message) {
       const url = "http://wxpusher.zjiecode.com/api/send/message"
       let res = http.postJson(url, {
-        "appToken": wxpusherUids,
+        "appToken": wxpusherToken,
         "content": "Wxpusher",
         "summary": message,
         "contentType": 1,
@@ -506,6 +489,8 @@ let $$init = {
       } else {
         console.log("wxpusher 请求失败");
       }
+
+      console.log(res.body.string());
     }
 
     function dateFormat(fmt, date) {
@@ -557,7 +542,7 @@ let $$init = {
     }
 
     function shutdownDingtalk() {
-      const shutdown = "行停止"
+      const shutdown = "强行停止"
       const appName = "钉钉"
       const confirm = "强行停止"
       let packageName = app.getPackageName(appName);
@@ -568,8 +553,8 @@ let $$init = {
 
       if (is_sure.enabled()) {
         click(shutdown);
-        textContains("确定").findOne(3000);
-        click(confirm);
+        const quit = textContains("确定").findOne(3000);
+        quit.click();
         log(app.getAppName(packageName) + "应用已被关闭");
         sleep(1000);
       } else {
