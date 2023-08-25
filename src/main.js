@@ -79,7 +79,7 @@ let $$init = {
         device.wakeUpIfNeeded();
 
         sleep(1000);
-        swipe(500, 2000, 500, 1000, 220);
+        swipe(400, 1600, 400, 1000, 300);
       }
 
       //注册退出事件
