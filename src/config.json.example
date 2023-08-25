@@ -1,0 +1,19 @@
+{
+  "sbHour": 8,
+  "sbMinute": 50,
+  "sbSecond": 0,
+  "sbEarly": 300,
+  "xbHour": 18,
+  "xbMinute": 0,
+  "xbSecond": 0,
+  "xbDelay": 2,
+  "workTitle": "",
+  "randomMin": 0,
+  "randomMax": 2,
+  "account": "",
+  "dingPassword": "above required",
+  "txApiKey": "",  
+  "wxpusherUids": [""],
+  "wxpusherToken": "",
+  "pushoverApiKey": ""
+}
