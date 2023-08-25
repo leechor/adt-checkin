@@ -506,7 +506,6 @@ let $$init = {
       } else {
         console.log("wxpusher 请求失败");
       }
-      console.log(res)
     }
 
     function dateFormat(fmt, date) {
