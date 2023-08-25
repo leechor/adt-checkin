@@ -176,7 +176,7 @@ let $$init = {
     function openDingtalk() {
 
       frontAutojs()
-      setVolume(0) // 设备静音
+      // setVolume(0) // 设备静音
 
       console.log("准备启动" + app.getAppName(PACKAGE_ID_DD))
       while (!app.launchPackage(PACKAGE_ID_DD)) {
