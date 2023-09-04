@@ -544,7 +544,6 @@ let $$init = {
     function shutdownDingtalk() {
       const shutdown = "强行停止"
       const appName = "钉钉"
-      const confirm = "强行停止"
       let packageName = app.getPackageName(appName);
       app.openAppSetting(packageName);
       text(appName).waitFor();
@@ -554,12 +553,14 @@ let $$init = {
       if (is_sure.enabled()) {
         click(shutdown);
         const quit = textContains("确定").findOne(3000);
-        quit.click();
-        log(app.getAppName(packageName) + "应用已被关闭");
-        sleep(1000);
-      } else {
-        log(app.getAppName(packageName) + "应用不能被正常关闭或不在后台运行");
-      }
+        if(quit.enabled()) {
+          quit.click();
+          log(app.getAppName(packageName) + "应用已被关闭");
+        }
+        return;
+      } 
+      
+      log(app.getAppName(packageName) + "应用不能被正常关闭或不在后台运行");    
     }
   },
 
